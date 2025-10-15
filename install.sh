@@ -92,19 +92,38 @@ if [[ "$dev_tools_choice" =~ ^[Yy]$ ]]; then
     echo "Attempting to install developer tools and libraries..."
     if command -v pacman &> /dev/null; then
         echo "Detected Arch Linux (or Arch-based distro like CachyOS)."
-        sudo pacman -S --noconfirm base-devel git cmake ninja meson pkg-config \
+        sudo pacman -S --noconfirm base-devel neovim python-pip cmake ninja meson pkg-config \
             gtk3 gtk4 libadwaita \
-            ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
+            ttf-jetbrains-mono-nerd catppuccin-gtk-theme-mocha papirus-icon-theme
+        echo ""
+        echo "NOTE for Arch Linux:"
+        echo "  - pyenv: Install via AUR (e.g., yay -S pyenv) or official instructions."
+        echo "  - spicetify-cli: Install via AUR (e.g., yay -S spicetify-cli) or official instructions."
+        echo "  - ollama: Install via official instructions (curl -fsSL https://ollama.com/install.sh | sh)."
     elif command -v dnf &> /dev/null; then
         echo "Detected Fedora."
-        sudo dnf install -y @development-tools git cmake ninja-build meson pkg-config \
+        sudo dnf install -y @development-tools neovim python3-pip cmake ninja-build meson pkg-config \
             gtk3-devel gtk4-devel libadwaita-devel \
-            fira-code-fonts-all powerline-fonts
-        # For Nerd Fonts, users might need to manually download and install or use a COPR repo
-        echo "For additional Nerd Fonts on Fedora, consider installing from a COPR repository or manually downloading."
-        echo "Example: sudo dnf copr enable ryanabx/nerd-fonts -y && sudo dnf install -y nerd-fonts"
+            jetbrains-mono-fonts-all papirus-icon-theme
+        echo ""
+        echo "NOTE for Fedora:"
+        echo "  - catppuccin-gtk-theme: May require manual installation or a COPR repository."
+        echo "  - pyenv: Install via official instructions (e.g., curl https://pyenv.run | bash)."
+        echo "  - spicetify-cli: Install via official instructions (e.g., curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh)."
+        echo "  - ollama: Install via official instructions (curl -fsSL https://ollama.com/install.sh | sh)."
+    elif command -v zypper &> /dev/null; then
+        echo "Detected openSUSE."
+        sudo zypper install -y @patterns-devel_basis neovim python3-pip cmake ninja meson pkg-config \
+            libgtk-3-0 libgtk-4-0 libadwaita-1 \
+            jetbrains-mono-fonts papirus-icon-theme
+        echo ""
+        echo "NOTE for openSUSE:"
+        echo "  - catppuccin-gtk-theme: May require manual installation or a community repository."
+        echo "  - pyenv: Install via official instructions (e.g., curl https://pyenv.run | bash)."
+        echo "  - spicetify-cli: Install via official instructions."
+        echo "  - ollama: Install via official instructions (curl -fsSL https://ollama.com/install.sh | sh)."
     else
-        echo "Could not detect a supported package manager (pacman or dnf)."
+        echo "Could not detect a supported package manager (pacman, dnf, or zypper)."
         echo "Please install developer tools, build tools, GTK libraries, and Nerd Fonts manually."
     fi
 else
@@ -124,13 +143,13 @@ if [[ "$core_deps_choice" =~ ^[Yy]$ ]]; then
     echo "Attempting to install core dependencies..."
     if command -v pacman &> /dev/null; then
         echo "Detected Arch Linux (or Arch-based distro like CachyOS)."
-        sudo pacman -S hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl pipewire-alsa
+        sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi mako grim slurp jq fastfetch kitty brightnessctl wl-clipboard playerctl pipewire wireplumber pulseaudio-utils pavucontrol mpv yt-dlp ffmpeg
     elif command -v dnf &> /dev/null; then
         echo "Detected Fedora."
-        sudo dnf install hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl pipewire-utils
+        sudo dnf install hyprland hyprpaper hypridle hyprlock waybar rofi mako grim slurp jq fastfetch kitty brightnessctl wl-clipboard playerctl pipewire-utils wireplumber pulseaudio-utils pavucontrol mpv yt-dlp ffmpeg
     elif command -v zypper &> /dev/null; then
         echo "Detected openSUSE."
-        sudo zypper install hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl
+        sudo zypper install hyprland hyprpaper hypridle hyprlock waybar rofi mako grim slurp jq fastfetch kitty brightnessctl wl-clipboard playerctl pipewire wireplumber pulseaudio-utils pavucontrol mpv yt-dlp ffmpeg
     else
         echo "Could not detect a supported package manager (pacman, dnf, or zypper)."
 echo "For the most up-to-date and detailed installation instructions for Hyprland and its dependencies,"
