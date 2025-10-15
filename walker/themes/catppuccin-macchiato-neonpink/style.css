@@ -1,0 +1,87 @@
+/* Walker — Catppuccin Macchiato NEON Pink */
+@define-color base      #1e1e2e;   /* base */
+@define-color surface   #181825;   /* mantle */
+@define-color crust     #11111b;   /* crust */
+@define-color text      #f5e0dc;   /* text */
+@define-color subtext   #a6adc8;   /* subtext */
+@define-color neon      #ff4fcb;   /* NEON pink */
+
+@define-color window_bg alpha(@base, 0.80);
+@define-color select_bg alpha(@neon, 0.28);
+@define-color bordercol alpha(@neon, 0.85);
+
+* { all: unset; color: @text; font: 13pt "JetBrainsMono Nerd Font"; }
+
+/* container */
+.box-wrapper {
+  background: @window_bg;
+  border: 2px solid @bordercol;
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow:
+    0 0 24px alpha(@neon, 0.30),
+    0 0 48px alpha(@neon, 0.15),
+    0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* search field */
+.input {
+  background: mix(@surface, transparent, 85%);
+  color: @text;
+  caret-color: @neon;
+  border-radius: 14px;
+  padding: 10px 14px;
+  border: 1px solid alpha(@neon, 0.4);
+  box-shadow: 0 0 8px alpha(@neon, 0.3);
+}
+.input:focus {
+  border-color: alpha(@neon, 0.8);
+  box-shadow:
+    0 0 12px alpha(@neon, 0.55),
+    0 0 32px alpha(@neon, 0.35);
+}
+.input placeholder { color: @subtext; opacity: .7; }
+
+/* items */
+.list { color: @text; }
+.item-box {
+  padding: 9px 12px;
+  border-radius: 12px;
+  transition: all 0.12s ease;
+}
+.item-text     { font-size: 13.5px; }
+.item-subtext  { font-size: 11.5px; color: @subtext; }
+.item-image, .item-image-text { margin-right: 10px; }
+
+/* hover/selected glow */
+child:hover .item-box,
+child:selected .item-box {
+  background: alpha(@neon, 0.25);
+  border: 1px solid alpha(@neon, 0.6);
+  box-shadow:
+    0 0 8px alpha(@neon, 0.7),
+    0 0 24px alpha(@neon, 0.4);
+}
+
+/* section headers */
+.section-header {
+  color: @neon;
+  font-weight: bold;
+  text-shadow: 0 0 6px alpha(@neon, 0.8);
+  letter-spacing: .4px;
+}
+
+/* footer / keybinds */
+.keybinds-wrapper {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid alpha(@neon, 0.25);
+  color: @subtext;
+  font-size: 12px;
+  opacity: .9;
+}
+.keybind-bind {
+  font-weight: 700;
+  color: @neon;
+  text-shadow: 0 0 8px alpha(@neon, 0.8);
+}

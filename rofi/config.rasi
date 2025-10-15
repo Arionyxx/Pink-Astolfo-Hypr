@@ -1,0 +1,11 @@
+configuration {
+  modi: "drun";
+  show-icons: true;
+  display-drun: "Apps";
+  drun-display-format: "{name}";
+  icon-theme: "Papirus-Dark";  /* or whatever you use */
+  sort: true;
+  matching: "fuzzy";
+  case-sensitive: false;
+}
+@theme "~/.config/rofi/catppuccin-latte-pink.rasi"

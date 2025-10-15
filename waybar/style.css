@@ -1,0 +1,75 @@
+@import "macchiato.css";
+
+/* fonts */
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrainsMono Nerd Font Mono","Inter", system-ui, sans-serif;
+  font-size: 12.5pt;
+  color: @text;
+}
+
+/* Bar: subtle pink tint, ~0.70 opacity */
+window#waybar {
+  background-color: alpha(@base, 0.70);
+  border: 2px solid alpha(@pink, 0.40);
+  border-radius: 10px;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Workspaces */
+#workspaces button {
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid alpha(@pink, 0.15);
+  background: alpha(@surface0, 0.40);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+#workspaces button.active {
+  background: alpha(@pink, 0.18);
+  color: @text;
+  font-weight: 700;
+  border-color: alpha(@pink, 0.35);
+  box-shadow: 0 0 4px alpha(@pink, 0.25);
+}
+
+/* Module “chips”: unified look */
+#clock, #battery, #network, #pulseaudio, #tray, #window, #cpu, #memory {
+  background-color: alpha(@surface0, 0.35);
+  border: 1px solid alpha(@pink, 0.15);
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 0 6px;
+  transition: all 0.25s ease;
+}
+
+/* keep right edge clean */
+.modules-right { margin-right: 6px; }
+.modules-right > * { margin-right: 6px; }
+.modules-right > *:last-child { margin-right: 0; }
+
+/* --- Audio module styling --- */
+#pulseaudio {
+  border: 1px solid alpha(@pink, 0.25);
+  background: alpha(@surface0, 0.45);
+  color: @text;
+  transition: all 0.2s ease;
+}
+#pulseaudio:hover {
+  background: alpha(@pink, 0.18);
+  border-color: @pink;
+  box-shadow: 0 0 6px alpha(@pink, 0.35);
+}
+#pulseaudio.muted {
+  color: alpha(@text, 0.6);
+  background: alpha(@surface0, 0.25);
+  border-color: alpha(@pink, 0.10);
+  box-shadow: none;
+}
+
+/* Optional: subtle “pulse” when volume changes */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 alpha(@pink, 0.35); }
+  100% { box-shadow: 0 0 10px 3px transparent; }
+}
+#pulseaudio.changing {
+  animation: pulseGlow 0.6s ease-out;
+}

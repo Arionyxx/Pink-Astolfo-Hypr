@@ -1,0 +1,38 @@
+# ----- Global look -----
+anchor=top-right
+outer-margin=8,12
+margin=10
+padding=10
+width=360
+max-visible=3
+default-timeout=4500
+ignore-timeout=false
+border-size=2
+border-radius=14
+layer=overlay
+icons=1
+max-icon-size=64
+font=Inter 11
+
+# Catppuccin Macchiato
+background-color=#24273aE6
+text-color=#cad3f5FF
+border-color=#f5bde6FF
+
+# Subtle shadow-ish outline via two borders (optional)
+# not supported natively; border gives enough pop with translucency
+
+# ----- App-specific tweaks -----
+# Make media/Discord notifications auto-expire even if they ask to be resident
+[app-name="Spotify|Vesktop|Discord"]
+default-timeout=3500
+ignore-timeout=false
+group-by=summary
+
+# Low-urgency (spammy) stuff fades quicker
+[urgency=low]
+default-timeout=2500
+
+# Critical stays longer but still times out (remove if you want sticky)
+[urgency=critical]
+default-timeout=8000

@@ -1,0 +1,84 @@
+/* Walker — Catppuccin Macchiato Light Pink Glow (v2) */
+@define-color base      #1e1e2e;   /* background */
+@define-color surface   #181825;
+@define-color text      #f5e0dc;
+@define-color subtext   #b8c0e0;
+@define-color lightpink #ffbdf0;   /* main soft pink glow */
+
+@define-color window_bg alpha(@base, 0.80);
+@define-color select_bg alpha(@lightpink, 0.30);
+@define-color bordercol alpha(@lightpink, 0.85);
+
+* { all: unset; color: @text; font: 13pt "JetBrainsMono Nerd Font"; }
+
+/* main container */
+.box-wrapper {
+  background: @window_bg;
+  border: 2px solid @bordercol;
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow:
+    0 0 22px alpha(@lightpink, 0.30),
+    0 0 42px alpha(@lightpink, 0.18),
+    0 8px 22px rgba(0,0,0,0.55);
+}
+
+/* search bar */
+.input {
+  background: mix(@surface, transparent, 85%);
+  color: @text;
+  caret-color: @lightpink;
+  border-radius: 14px;
+  padding: 10px 14px;
+  border: 1px solid alpha(@lightpink, 0.45);
+  box-shadow: 0 0 10px alpha(@lightpink, 0.25);
+}
+.input:focus {
+  border-color: alpha(@lightpink, 0.8);
+  box-shadow:
+    0 0 14px alpha(@lightpink, 0.55),
+    0 0 32px alpha(@lightpink, 0.35);
+}
+.input placeholder { color: @subtext; opacity: .75; }
+
+/* items */
+.item-box {
+  padding: 9px 12px;
+  border-radius: 12px;
+  transition: all 0.12s ease;
+}
+.item-text     { font-size: 13.5px; }
+.item-subtext  { font-size: 11.5px; color: @subtext; }
+.item-image, .item-image-text { margin-right: 10px; }
+
+/* hover & selected */
+child:hover .item-box,
+child:selected .item-box {
+  background: @select_bg;
+  border: 1px solid alpha(@lightpink, 0.6);
+  box-shadow:
+    0 0 10px alpha(@lightpink, 0.65),
+    0 0 26px alpha(@lightpink, 0.35);
+}
+
+/* section headers */
+.section-header {
+  color: @lightpink;
+  font-weight: bold;
+  text-shadow: 0 0 6px alpha(@lightpink, 0.8);
+}
+
+/* footer / keybinds */
+.keybinds-wrapper {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid alpha(@lightpink, 0.25);
+  color: @subtext;
+  font-size: 12px;
+  opacity: .9;
+}
+.keybind-bind {
+  font-weight: 700;
+  color: @lightpink;
+  text-shadow: 0 0 8px alpha(@lightpink, 0.9);
+}

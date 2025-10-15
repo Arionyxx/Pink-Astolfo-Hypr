@@ -1,0 +1,66 @@
+{
+  // --- Catppuccin Macchiato Waybar ---
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": ["tray", "mpris", "pulseaudio", "cpu", "memory"],
+
+  "hyprland/workspaces": { "format": "{name}", "all-outputs": true },
+
+  "hyprland/window": {
+    "max-length": 35,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "  $1",
+      "(.*) — Vesktop": "  $1",
+      "(.*) — Spotify": "  $1",
+      "(.*) — Visual Studio Code": "󰨞  $1"
+    }
+  },
+
+  "clock": {
+    "format": "{:%a %d %b  %H:%M}",       // e.g. Wed 15 Oct  02:15
+    "tooltip-format": "{:%A, %d %B %Y}",  // e.g. Wednesday, 15 October 2025
+    "interval": 60
+  },
+
+  // --- NOW PLAYING (MPRIS) ---
+  "mpris": {
+    "format": "{player_icon}{title} — {artist}",
+    "format-paused": "  {title} — {artist}",
+    "format-stopped": "  Not playing",
+    "title-len": 32,
+    "artist-len": 24,
+    // "player": "spotify",
+    "ignored-players": ["firefox", "chromium"],
+    "player-icons": { "default": "  ", "spotify": "  " },
+    "status-icons": { "playing": " ", "paused": " ", "stopped": " " },
+    "tooltip-format": "{player} · {status_icon}{title}\n{artist}\n{album}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 2,
+    "format": "{icon} {volume}%",
+    "format-muted": " mute",
+    "format-icons": ["",""],
+    "on-click": "~/.local/bin/volume-slider",
+    "on-click-right": "~/.local/bin/volume-menu",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+
+  "cpu":    { "interval": 5,  "format": " {usage}%" },
+  "memory": { "interval": 10, "format": " {percentage}%" },
+
+  // --- Tray (simple, no ignores) ---
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8,
+    "show-passive-items": false
+  }
+}

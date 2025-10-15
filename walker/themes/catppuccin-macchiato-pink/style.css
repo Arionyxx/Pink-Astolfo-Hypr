@@ -1,0 +1,76 @@
+/* Walker — Catppuccin Macchiato Pink (dark, ~80% transparent, refined) */
+@define-color base      #24273a;  /* base */
+@define-color surface   #1e2030;  /* mantle */
+@define-color crust     #181926;  /* crust */
+@define-color text      #cad3f5;  /* text */
+@define-color subtext   #a5adcb;  /* subtext */
+@define-color pink      #f5bde6;  /* accent */
+
+@define-color window_bg alpha(@base, 0.80);  /* was 0.70 */
+@define-color select_bg alpha(@pink, 0.24);  /* a bit stronger */
+@define-color bordercol alpha(@pink, 0.70);
+
+* { all: unset; color: @text; font: 12.5pt "JetBrainsMono Nerd Font"; }
+
+/* container */
+.box-wrapper {
+  background: @window_bg;
+  border: 2px solid @bordercol;
+  border-radius: 18px;             /* slightly rounder */
+  padding: 12px;
+  box-shadow:
+    0 24px 48px rgba(0,0,0,0.45),
+    0 10px 22px rgba(0,0,0,0.28);
+}
+
+/* search */
+.input {
+  background: mix(@surface, transparent, 88%);
+  color: @text;
+  caret-color: @text;
+  border-radius: 14px;
+  padding: 10px 14px;
+  border: 1px solid alpha(@pink, 0.35);
+  box-shadow: 0 0 0 2px transparent;
+}
+.input:focus {
+  border-color: alpha(@pink, 0.65);
+  box-shadow: 0 0 0 2px alpha(@pink, 0.20);
+}
+.input placeholder { color: @subtext; opacity: .75; }
+
+/* columns / list */
+.list { color: @text; }
+.item-box {
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+.item-text     { font-size: 13.5px; }
+.item-subtext  { font-size: 11.5px; color: @subtext; }
+.item-image, .item-image-text { margin-right: 10px; }
+.normal-icons  { -gtk-icon-size: 24px; }
+.large-icons   { -gtk-icon-size: 32px; }
+
+/* hover/selected */
+child:hover .item-box,
+child:selected .item-box {
+  background: @select_bg;
+  border-color: alpha(@pink, 0.45);
+  box-shadow: 0 0 0 1px alpha(@pink, 0.18) inset;
+}
+
+/* subtle divider & footer */
+.section-header {
+  color: @subtext; letter-spacing: .2px;
+}
+.keybinds-wrapper {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid alpha(@subtext, 0.12);
+  color: @subtext;
+  font-size: 12px;
+  opacity: .9;
+}
+.keybind-bind { font-weight: 700; text-transform: lowercase; }
