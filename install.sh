@@ -6,6 +6,17 @@ set -e
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="$HOME/.config/Pink-Astolfo-Rice"
 
+# --- Hyprland Detection ---
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    echo ""
+    echo "-----------------------------------------------------"
+    echo "NOTE: It appears you are already running Hyprland."
+    echo "      This script will proceed with dotfile installation and dependency checks."
+    echo "-----------------------------------------------------"
+    echo ""
+    sleep 2 # Give user time to read the message
+fi
+
 # --- Backup existing dotfiles ---
 echo ""
 echo "-----------------------------------------------------"
