@@ -79,6 +79,38 @@ echo "         Please review the content of the provided .bashrc before applying
 echo "-----------------------------------------------------"
 echo ""
 
+# --- Developer Tools, Build Tools, and Libraries ---
+echo ""
+echo "-----------------------------------------------------"
+echo "NOTE: This script can also install common developer tools, build tools, and libraries."
+echo "      This is optional and can be skipped if not needed."
+echo "-----------------------------------------------------"
+echo ""
+
+read -p "Do you want to install developer tools, build tools, GTK libraries, and Nerd Fonts? (y/N): " dev_tools_choice
+if [[ "$dev_tools_choice" =~ ^[Yy]$ ]]; then
+    echo "Attempting to install developer tools and libraries..."
+    if command -v pacman &> /dev/null; then
+        echo "Detected Arch Linux (or Arch-based distro like CachyOS)."
+        sudo pacman -S --noconfirm base-devel git cmake ninja meson pkg-config \
+            gtk3 gtk4 libadwaita \
+            ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
+    elif command -v dnf &> /dev/null; then
+        echo "Detected Fedora."
+        sudo dnf install -y @development-tools git cmake ninja-build meson pkg-config \
+            gtk3-devel gtk4-devel libadwaita-devel \
+            fira-code-fonts-all powerline-fonts
+        # For Nerd Fonts, users might need to manually download and install or use a COPR repo
+        echo "For additional Nerd Fonts on Fedora, consider installing from a COPR repository or manually downloading."
+        echo "Example: sudo dnf copr enable ryanabx/nerd-fonts -y && sudo dnf install -y nerd-fonts"
+    else
+        echo "Could not detect a supported package manager (pacman or dnf)."
+        echo "Please install developer tools, build tools, GTK libraries, and Nerd Fonts manually."
+    fi
+else
+    echo "Skipping installation of developer tools and libraries."
+fi
+
 # --- Dependency installation (placeholder) ---
 echo ""
 echo "-----------------------------------------------------"
