@@ -12,7 +12,7 @@ This rice includes configurations for the following components:
 - **Kitty**: A fast, feature-rich, GPU-accelerated terminal emulator.
 - **Mako**: A lightweight Wayland notification daemon.
 - **Fastfetch**: A neofetch-like tool for system information.
-- **Hypr-lain**: (Description of Hypr-lain if known, otherwise keep generic)
+
 - **Walker**: (Description of Walker if known, otherwise keep generic)
 
 ## Installation

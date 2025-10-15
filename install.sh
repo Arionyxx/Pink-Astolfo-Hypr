@@ -25,7 +25,7 @@ if [[ "$backup_choice" =~ ^[Yy]$ ]]; then
     cp -r "$HOME/.config/kitty" "$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)/" 2>/dev/null || true
     cp -r "$HOME/.config/mako" "$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)/" 2>/dev/null || true
     cp -r "$HOME/.config/fastfetch" "$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)/" 2>/dev/null || true
-    cp -r "$HOME/.config/hypr-lain" "$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)/" 2>/dev/null || true
+
     cp -r "$HOME/.config/walker" "$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)/" 2>/dev/null || true
     cp "$HOME/.bashrc" "$HOME/.bashrc_backup_$(date +%Y%m%d_%H%M%S)" 2>/dev/null || true
     echo "Backup complete."
@@ -63,7 +63,7 @@ ln -sf "$DOTFILES_DIR/mako" "$HOME/.config/mako"
 ln -sf "$DOTFILES_DIR/fastfetch" "$HOME/.config/fastfetch"
 
 # Hypr-lain
-ln -sf "$DOTFILES_DIR/hypr-lain" "$HOME/.config/hypr-lain"
+
 
 # Walker
 ln -sf "$DOTFILES_DIR/walker" "$HOME/.config/walker"

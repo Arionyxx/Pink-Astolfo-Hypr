@@ -1,5 +1,0 @@
-#!/bin/env bash
-
-$AUDIOFILE_PATH="~/.config/assets/media/audi/beep.mp3"
-
-mpv --no-video $AUDIOFILE_PATH
