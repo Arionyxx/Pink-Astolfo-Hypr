@@ -111,16 +111,41 @@ else
     echo "Skipping installation of developer tools and libraries."
 fi
 
-# --- Dependency installation (placeholder) ---
+# --- Core Dependency Installation ---
 echo ""
 echo "-----------------------------------------------------"
-echo "NOTE: This script does NOT install dependencies."
-echo "      You will need to manually install the following packages:"
-echo "      - Hyprland, Waybar, Rofi, Kitty, Mako, Fastfetch, Hyprpaper, Playerctl, Brightnessctl, Wpctl"
-echo "      For Arch Linux, you might use pacman:"
-echo "      sudo pacman -S hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl pipewire-alsa"
-echo "      For Fedora, you might use dnf:"
-echo "      sudo dnf install hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl pipewire-utils"
+echo "NOTE: This script will attempt to install core dependencies."
+echo "      You will be prompted for sudo password if necessary."
+echo "-----------------------------------------------------"
+echo ""
+
+read -p "Do you want to install core dependencies (Hyprland, Waybar, Rofi, Kitty, etc.)? (y/N): " core_deps_choice
+if [[ "$core_deps_choice" =~ ^[Yy]$ ]]; then
+    echo "Attempting to install core dependencies..."
+    if command -v pacman &> /dev/null; then
+        echo "Detected Arch Linux (or Arch-based distro like CachyOS)."
+        sudo pacman -S hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl pipewire-alsa
+    elif command -v dnf &> /dev/null; then
+        echo "Detected Fedora."
+        sudo dnf install hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl pipewire-utils
+    elif command -v zypper &> /dev/null; then
+        echo "Detected openSUSE."
+        sudo zypper install hyprland waybar rofi kitty mako fastfetch hyprpaper playerctl brightnessctl
+    else
+        echo "Could not detect a supported package manager (pacman, dnf, or zypper)."
+echo "For the most up-to-date and detailed installation instructions for Hyprland and its dependencies,"
+echo "always refer to the official Hyprland Wiki: https://wiki.hypr.land/Hyprland-wiki/Getting-Started/"
+echo "Please install core dependencies manually."
+    fi
+else
+    echo "Skipping installation of core dependencies."
+fi
+
+echo ""
+echo "-----------------------------------------------------"
+echo "For Debian/Ubuntu (and other stable distros):"
+echo "Hyprland is bleeding-edge and often requires building from source on stable distributions."
+echo "Refer to the official Hyprland Wiki for detailed instructions on building from source or using testing/unstable repositories."
 echo "-----------------------------------------------------"
 echo ""
 
